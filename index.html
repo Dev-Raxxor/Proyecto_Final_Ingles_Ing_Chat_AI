@@ -134,17 +134,39 @@
 
             const prompt = `Act as an English teacher. Help students with their English questions with the request: "${inputText}"`;
 
+            // Mostrar mensaje de "pensando..."
+            const responseElement = document.getElementById('responseText');
+            responseElement.innerText = "Thinking...";
+
             try {
                 const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
                 const result = await model.generateContent(prompt);
                 const response = await result.response;
-                document.getElementById('responseText').innerText = response.text().replace(/[*_`]/g, '');
+
+                // Obtener texto de la respuesta
+                const textResponse = await response.text();
+
+                // Limpiar formato y simular efecto de escritura
+                let index = 0;
+                const typingSpeed = 50; // velocidad de escritura (ms)
+                responseElement.innerText = ''; // Limpiar el texto de "pensando..."
+
+                function typeWriter() {
+                    if (index < textResponse.length) {
+                        responseElement.innerText += textResponse[index];
+                        index++;
+                        setTimeout(typeWriter, typingSpeed); // Llamada recursiva con retraso
+                    }
+                }
+
+                typeWriter(); // Iniciar el efecto de escritura
 
             } catch (error) {
                 console.error('Error generating content:', error);
-                document.getElementById('responseText').innerText = "An error occurred. Please try again.";
+                responseElement.innerText = "An error occurred. Please try again.";
             }
         });
+
     </script>
 </body>
 
