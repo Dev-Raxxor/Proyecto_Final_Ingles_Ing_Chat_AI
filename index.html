@@ -146,6 +146,9 @@
                 // Obtener texto de la respuesta
                 const textResponse = await response.text();
 
+                // Limpiar cualquier formato Markdown (como * o _)
+                const cleanResponse = textResponse.replace(/[*_`]/g, '');
+
                 // Limpiar formato y simular efecto de escritura
                 let index = 0;
                 const typingSpeed = 50; // velocidad de escritura (ms)
