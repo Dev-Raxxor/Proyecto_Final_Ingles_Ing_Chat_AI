@@ -2,7 +2,7 @@
 import { GoogleGenerativeAI } from "https://esm.sh/@google/generative-ai";
 
 // Clave API para acceder al servicio de Google Generative AI
-const API_KEY = 'AIzaSyCimCaLib_Jcr5bCDsMvZ-CB1CqnqTiRCs';
+const API_KEY = 'AIzaSyDBKCwC8mYjIXxJKlXGx9guVQjwwVPM3yQ';
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 // Escuchar el evento de clic en el botón
