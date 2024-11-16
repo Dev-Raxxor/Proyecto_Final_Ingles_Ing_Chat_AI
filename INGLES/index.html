@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Metadatos básicos del documento -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Icono de la página -->
+    <link rel="icon" href="logo.ico" type="image/x-icon">
+    <!-- Estilos CSS para el cuerpo de la página -->
+     <link rel="stylesheet" href="styles.css">
+
+    <title>Learn English with AI</title>
+</head>
+
+<body>
+    <!-- Contenedor principal de la aplicación -->
+    <div class="container">
+        <h1>Learn English with AI</h1>
+        <!-- Campo de texto para la entrada del usuario -->
+        <input type="text" id="inputText" placeholder="Write a sentence in English...">
+        <!-- Botón para generar respuesta -->
+        <button id="generateButton">Generate</button>
+        <!-- Contenedor para mostrar la respuesta generada -->
+        <p id="responseText"></p>
+    </div>
+
+    <!-- Script para conectar con el API de Google Generative AI -->
+    <script src="script.js" type="module"></script>
+</body>
+
+</html>
