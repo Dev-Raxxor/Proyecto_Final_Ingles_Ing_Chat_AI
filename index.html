@@ -2,11 +2,15 @@
 <html lang="es">
 
 <head>
+    <!-- Metadatos básicos del documento -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.ico" type="image/x-icon">
     <title>Learn English with AI</title>
+
+    <!-- Estilos internos para la página -->
     <style>
-        /* Estilos globales */
+        /* Estilos globales para el cuerpo de la página */
         body {
             font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
@@ -19,7 +23,7 @@
             color: #333;
         }
 
-        /* Contenedor principal */
+        /* Contenedor principal de la aplicación */
         .container {
             background-color: #fff;
             border-radius: 15px;
@@ -29,16 +33,17 @@
             padding: 20px;
             text-align: center;
             animation: fadeIn 1s ease-in-out;
+            /* Animación de aparición */
         }
 
-        /* Título */
+        /* Estilo del título principal */
         h1 {
             font-size: 2rem;
             color: #8b26ff;
             margin-bottom: 20px;
         }
 
-        /* Input y botón */
+        /* Estilos para el campo de entrada de texto */
         input[type="text"] {
             width: 90%;
             padding: 10px 15px;
@@ -50,10 +55,12 @@
             transition: border 0.3s ease;
         }
 
+        /* Efecto visual al enfocar el campo de texto */
         input[type="text"]:focus {
             border-color: #7b2ff5;
         }
 
+        /* Estilos del botón de envío */
         button {
             background-color: #3426ad;
             color: white;
@@ -66,12 +73,13 @@
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
+        /* Efecto al pasar el ratón sobre el botón */
         button:hover {
             background-color: #50007f;
             transform: scale(1.05);
         }
 
-        /* Contenedor de respuesta con desplazamiento */
+        /* Estilos para el contenedor de respuesta */
         p {
             font-size: 1.2rem;
             color: #333;
@@ -82,12 +90,11 @@
             margin-top: 15px;
             white-space: pre-wrap;
             max-height: 200px;
-            /* Limita la altura */
             overflow-y: auto;
-            /* Permite desplazamiento vertical */
+            /* Permitir desplazamiento vertical */
         }
 
-        /* Animación */
+        /* Animación para la aparición del contenedor */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -103,13 +110,18 @@
 </head>
 
 <body>
+    <!-- Contenedor principal de la aplicación -->
     <div class="container">
         <h1>Learn English with AI</h1>
+        <!-- Campo de texto para la entrada del usuario -->
         <input type="text" id="inputText" placeholder="Write a sentence in English...">
+        <!-- Botón para generar respuesta -->
         <button id="generateButton">Generate</button>
+        <!-- Contenedor para mostrar la respuesta generada -->
         <p id="responseText"></p>
     </div>
 
+    <!-- Importar el módulo de Google Generative AI -->
     <script type="importmap">
         {
           "imports": {
@@ -117,59 +129,66 @@
           }
         }
     </script>
+
     <script type="module">
+        // Importar la librería de Google Generative AI
         import { GoogleGenerativeAI } from "@google/generative-ai";
 
+        // Clave API para acceder al servicio de Google Generative AI
         const API_KEY = 'AIzaSyCimCaLib_Jcr5bCDsMvZ-CB1CqnqTiRCs';
         const genAI = new GoogleGenerativeAI(API_KEY);
 
+        // Escuchar el evento de clic en el botón
         document.getElementById('generateButton').addEventListener('click', async () => {
             const inputText = document.getElementById('inputText').value;
 
-            // Validar entrada
+            // Validar que la entrada solo contenga caracteres en inglés
             if (!/^[a-zA-Z\s.,'"]+$/.test(inputText)) {
                 document.getElementById('responseText').innerText = "Please enter text in English.";
                 return;
             }
 
+            // Crear el prompt para enviar a la API
             const prompt = `Act as an English teacher. Help students with their English questions with the request: "${inputText}"`;
 
-            // Mostrar mensaje de "pensando..."
+            // Mostrar un mensaje mientras se genera la respuesta
             const responseElement = document.getElementById('responseText');
             responseElement.innerText = "Thinking...";
 
             try {
+                // Obtener el modelo generativo de Google
                 const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
                 const result = await model.generateContent(prompt);
                 const response = await result.response;
 
-                // Obtener texto de la respuesta
+                // Obtener el texto de la respuesta generada
                 const textResponse = await response.text();
 
-                // Limpiar cualquier formato Markdown (como * o _)
+                // Limpiar cualquier formato Markdown no deseado
                 const cleanResponse = textResponse.replace(/[*_`]/g, '');
 
-                // Limpiar formato y simular efecto de escritura
+                // Iniciar el efecto de escritura simulada
                 let index = 0;
-                const typingSpeed = 50; // velocidad de escritura (ms)
-                responseElement.innerText = ''; // Limpiar el texto de "pensando..."
+                const typingSpeed = 50; // Velocidad de escritura en milisegundos
+                responseElement.innerText = ''; // Limpiar el mensaje de "pensando..."
 
+                // Función para mostrar el efecto de escritura
                 function typeWriter() {
-                    if (index < textResponse.length) {
-                        responseElement.innerText += textResponse[index];
+                    if (index < cleanResponse.length) {
+                        responseElement.innerText += cleanResponse[index];
                         index++;
-                        setTimeout(typeWriter, typingSpeed); // Llamada recursiva con retraso
+                        setTimeout(typeWriter, typingSpeed);
                     }
                 }
 
-                typeWriter(); // Iniciar el efecto de escritura
+                typeWriter(); // Iniciar la animación de escritura
 
             } catch (error) {
+                // Manejar errores y mostrar un mensaje al usuario
                 console.error('Error generating content:', error);
                 responseElement.innerText = "An error occurred. Please try again.";
             }
         });
-
     </script>
 </body>
 
