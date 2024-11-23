@@ -1,0 +1,125 @@
+/* Estilos globales para el cuerpo de la página */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #000000, #8b26ff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Contenedor principal de la aplicación */
+.container {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(163, 0, 168, 0.2);
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    /* Animación de aparición */
+}
+
+/* Estilo del título principal */
+h1 {
+    font-size: 2rem;
+    color: #8b26ff;
+    margin-bottom: 20px;
+}
+
+/* Estilos para el campo de entrada de texto */
+input[type="text"] {
+    width: 90%;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+/* Efecto visual al enfocar el campo de texto */
+input[type="text"]:focus {
+    border-color: #7b2ff5;
+}
+
+/* Estilos del botón de envío */
+button {
+    background-color: #3426ad;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efecto al pasar el ratón sobre el botón */
+button:hover {
+    background-color: #50007f;
+    transform: scale(1.05);
+}
+
+/* Estilos para el contenedor de respuesta */
+p {
+    font-size: 1.2rem;
+    color: #333;
+    background-color: #f9f9f9;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+    white-space: pre-wrap;
+    max-height: 200px;
+    overflow-y: auto;
+    /* Permitir desplazamiento vertical */
+}
+
+/* Animación para la aparición del contenedor */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Estilos para el botón de regreso */
+.back-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    /* Fija el botón en la esquina inferior derecha */
+}
+
+.back-button button {
+    background-color: #3426ad;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover para el botón de regreso */
+.back-button button:hover {
+    background-color: #50007f;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}

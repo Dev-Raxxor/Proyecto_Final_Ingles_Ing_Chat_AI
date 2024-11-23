@@ -1,0 +1,122 @@
+/* Estilos globales */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #000000, #8b26ff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
+}
+
+/* Contenedor principal */
+.main-container {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(163, 0, 168, 0.2);
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    color: #333;
+}
+
+/* Título principal */
+h1 {
+    font-size: 2.5rem;
+    color: #8b26ff;
+    margin-bottom: 20px;
+}
+
+/* Texto descriptivo */
+p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* Botón de navegación */
+button {
+    background-color: #3426ad;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover del botón */
+button:hover {
+    background-color: #50007f;
+    transform: scale(1.05);
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Footer estilizado */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    background: linear-gradient(90deg, #b67afa, #342f61);
+    color: #fff;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+    font-size: 1rem;
+    margin: 5px 0;
+    font-weight: 400;
+}
+
+footer p span {
+    font-weight: bold;
+    color: #ffd700;
+}
+
+/* Íconos en el footer */
+.footer-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.footer-icons a {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
+.footer-icons img {
+    width: 100%;
+    height: auto;
+    filter: invert(1);
+    transition: transform 0.3s ease;
+}
+
+.footer-icons img:hover {
+    transform: scale(1.2);
+    filter: invert(0.8);
+}
